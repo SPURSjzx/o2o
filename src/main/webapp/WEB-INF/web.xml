@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <display-name>Archetype Created Web Application</display-name>
+
+    <!--指定默认访问页面。默认的是index.jsp  可以进行修改-->
+    <!--<welcome-file-list>-->
+        <!--<welcome-file>listarea.html</welcome-file>-->
+        <!--&lt;!&ndash;<welcome-file>aaa.html</welcome-file>&ndash;&gt;-->
+    <!--</welcome-file-list>-->
+    <servlet>
+        <servlet-name>spring-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/spring-*.xml</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>spring-dispatcher</servlet-name>
+        <!--因为在spring-web.xml中已经过滤了一部分请求 所以可以默认匹配所有请求 将所有的URL请求转入dispatcher处理-->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>
