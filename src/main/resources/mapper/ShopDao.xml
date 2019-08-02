@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jzx.o2o.dao.ShopDao">
+    <!--useGeneratedKeys 获取数据库自增主键值 在mybatis-config中设置过。-->
+    <!--keyColumn设置数据库主键-->
+    <!--keyProperty设置keycolum与实体类中的哪个字段关联-->
+    <insert id="insertShop" useGeneratedKeys="true" keyColumn="shop_id" keyProperty="shopId">
+        INSERT
+    </insert>
+</mapper>0
