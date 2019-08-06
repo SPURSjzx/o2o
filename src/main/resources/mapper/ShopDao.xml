@@ -7,7 +7,42 @@
     <!--useGeneratedKeys 获取数据库自增主键值 在mybatis-config中设置过。-->
     <!--keyColumn设置数据库主键-->
     <!--keyProperty设置keycolum与实体类中的哪个字段关联-->
+    <!--新增店铺-->
     <insert id="insertShop" useGeneratedKeys="true" keyColumn="shop_id" keyProperty="shopId">
-        INSERT
+       INSERT INTO
+       tb_shop(owner_id,area_id,shop_category_id,shop_name,
+       shop_desc,shop_addr,phone,shop_img,priority,create_time,last_edit_time,
+       enable_status,advice)
+       VALUES
+      (#{owner.userId},#{area.areaId},#{shopCategory.shopCategoryId},
+      #{shopName},#{shopDesc},#{shopAddr},#{phone},#{shopImg},#{priority},
+      #{createTime},#{lastEditTime},
+      #{enableStatus},#{advice})
+
     </insert>
-</mapper>0
+    <!--更新店铺-->
+    <!--mybatis的sql语句动态生成-->
+    <!--因为数据库中shop_id owner_Id create_Time不允许改变 所以不进行配置-->
+    <!--test后的引号中代表的是shop中的实体变量-->
+    <!--前面的代表数据库中的字段名-->
+    <update id="updateShop" parameterType="com.jzx.o2o.entity.Shop">
+        update tb_shop
+        <set>
+            <if test="shopName!=null">shop_name=#{shopName},</if>
+            <if test="shopDesc!=null">shop_desc=#{shopDesc},</if>
+            <if test="shopAddr!=null">shop_addr=#{shopAddr},</if>
+            <if test="phone!=null">phone=#{phone},</if>
+            <if test="shopImg!=null">shop_img=#{shopImg},</if>
+            <if test="priority!=null">priority=#{priority},</if>
+            <if test="lastEditTime!=null">last_edit_time=#{lastEditTime},</if>
+            <if test="enableStatus!=null">enable_status=#{enableStatus},</if>
+            <if test="advice!=null">advice=#{advice},</if>
+            <!--复合类型的字段需要注意-->
+            <if test="area!=null">area_id=#{area.areaId},</if>
+            <if test="shopCategory!=null">shop_category_id=#{shopCategory.shopCategoryId}</if>
+        </set>
+        <!--满足条件是进行操作-->
+        where shop_id=#{shopId}
+    </update>
+</mapper>
+
