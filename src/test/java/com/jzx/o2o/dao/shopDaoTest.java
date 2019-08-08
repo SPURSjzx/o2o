@@ -25,7 +25,7 @@ public class shopDaoTest extends BaseTest {
     private ShopDao shopDao;
     @Test
     //@Ignore这个测试方法将被忽略，不被执行。
-    @Ignore
+
     public void testInsertShop(){
        Shop shop=new Shop();
        shop.setShopId(1L);
@@ -53,6 +53,7 @@ public class shopDaoTest extends BaseTest {
     }
 
     @Test
+    @Ignore
     public void testupdateShop(){
         Shop shop=new Shop();
         shop.setShopId(1L);

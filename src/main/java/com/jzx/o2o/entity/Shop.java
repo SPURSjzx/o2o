@@ -1,8 +1,5 @@
 package com.jzx.o2o.entity;
 
-import org.omg.PortableInterceptor.INACTIVE;
-
-import java.security.acl.Owner;
 import java.util.Date;
 
 /**
