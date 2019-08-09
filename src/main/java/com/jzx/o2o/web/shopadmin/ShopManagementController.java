@@ -9,7 +9,8 @@ import com.jzx.o2o.entity.ShopCategory;
 import com.jzx.o2o.enums.ShopStateEnum;
 import com.jzx.o2o.service.AreaService;
 import com.jzx.o2o.service.ShopService;
-import com.jzx.o2o.service.impl.ShopCategoryService;
+import com.jzx.o2o.service.ShopCategoryService;
+import com.jzx.o2o.util.CodeUtil;
 import com.jzx.o2o.util.HttpServletRequsetUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,6 +64,11 @@ public class ShopManagementController {
     private Map<String,Object>registerShop(HttpServletRequest request){
         //定义返回值
         Map<String,Object>modelMap=new HashMap<String,Object>();
+        if(!CodeUtil.checkVerifyCode(request)){
+            modelMap.put("success",false);
+            modelMap.put("errMsg","输入了错误验证码");
+            return modelMap;
+        }
         //开始具体功能编写需要定义一个工具类来解析request参数HttpServletRequsetUtil
         //1 接收并转换相应的参数 包括店铺信息图片信息等
         // 将前端传过来的shop相关的字符串转换为shop实体类
@@ -80,6 +85,7 @@ public class ShopManagementController {
         //2 注册店铺
         if(shop!=null){
             PersonInfo owner=new PersonInfo();
+            //Session TODO
             owner.setUserId(1L);
             shop.setOwner(owner);
             ShopExecution se=shopService.addShop(shop);

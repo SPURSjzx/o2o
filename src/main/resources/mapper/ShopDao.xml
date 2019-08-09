@@ -4,6 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jzx.o2o.dao.ShopDao">
+    <resultMap type="com.jzx.o2o.entity.Shop" id="shopMap">
+        <id column="shop_id" property="shopId"/>
+        <result column="shop_name" property="shopName"/>
+        <result column="shop_desc" property="shopDesc"/>
+        <result column="shop-addr" property="shopAddr"/>
+        <result column="phone" property="phone"/>
+        
+    </resultMap>
     <!--useGeneratedKeys 获取数据库自增主键值 在mybatis-config中设置过。-->
     <!--keyColumn设置数据库主键-->
     <!--keyProperty设置keycolum与实体类中的哪个字段关联-->
@@ -39,7 +47,7 @@
             <if test="advice!=null">advice=#{advice},</if>
             <!--复合类型的字段需要注意-->
             <if test="area!=null">area_id=#{area.areaId},</if>
-            <if test="shopCategory!=null">shop_category_id=#{shopCategory.shopCategoryId}</if>
+            <if test="shopCategory! =null">shop_category_id=#{shopCategory.shopCategoryId}</if>
         </set>
         <!--满足条件是进行操作-->
         where shop_id=#{shopId}

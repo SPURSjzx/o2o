@@ -11,7 +11,7 @@ import java.util.List;
  * @Author: Jzxxxxx
  * @Date: Created in 2019/8/8 0008下午 2:18
  */
-public interface  ShopCategoryDao {
+public interface ShopCategoryDao {
     List<ShopCategory> queryShopCategory(
             @Param("shopCategoryCondition") ShopCategory shopCategoryCondition);
 }
